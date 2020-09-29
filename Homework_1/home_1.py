@@ -46,7 +46,7 @@ while check.lower() == "yes":
 	check = input("\nIf you want to continue the game enter 'yes'. Otherwise enter 'no'.")
 
 
-
+print("\nThanks for the game:)")
 
 
 
