@@ -54,39 +54,58 @@ class Product(Country, Brand, Season):
 		print(self.Season_Presentation())
 
 
-	def discount(self):
-		self.product_price -= (self.product_price * 5) / 100
+	def discount(self, percent):
+		self.product_price -= (self.product_price * percent) / 100
 
 
-	def increase_price(self):
-		self.product_price += (self.product_price * 5) / 100
+	def increase_price(self, percent):
+		self.product_price += (self.product_price * percent) / 100
 
-	def increase_quantity(self):
-		self.product_quantity += 1
+	def increase_quantity(self, quantity):
+		self.product_quantity += quantity
 
 
 
-Orange = Product("Orange", "Fruit", 500, 5, "Citrus", "in 314 BC", "Autumn", "15,5-29 °C", "China", "Asia")
+
+season_list = ["spring", "summer", "autumn", "winter"]
+fruit_dict = {"Mandarin" : "Citrus", "Lemon" : "Citrus", "Raspberry" : "berries"}
+
+
+
+Orange = Product("Orange", "Fruit", 500, 5, "Citrus", "in 314 BC", "autumn", "15,5-29 °C", "China", "Asia")
 
 Orange.Product_Presentation()
 
 
-while Orange.product_quantity < 20:
-	Orange.increase_quantity()
+
+while True:
+	try:
+		quantity = int(input("\nTell me the quantity of product increase."))
+		percent = int(input("Tell me the percentage change in the price of the product."))
+		season = input("Tell me the season.")
+		if season.lower() not in season_list:
+			raise TypeError(F"Wrong input. Please try again.")
+		break
+	except ValueError:
+		print("You didn't enter an integer number. Please try again.")	
+	except TypeError as t:
+		print(t)
+
+
+Orange.increase_quantity(quantity)
 
 print("\nIncreased quantity is:", Orange.product_quantity)
+	
 
 
-if Orange.season_name == "Autumn":
-	Orange.discount()
+if Orange.season_name == season:
+	Orange.discount(percent)
 else:
-	Orange.increase_price()
+	Orange.increase_price(percent)
 
-print("\nChanged price is:", Orange.product_price)
+print(F"\nChanged price is: {Orange.product_price}\n")
 
-print("\n")
 
-fruit_dict = {"Mandarin" : "Citrus", "Lemon" : "Citrus", "Raspberry" : "berries"}
 
 for i in fruit_dict:
 	if fruit_dict[i] == Orange.brand_name:
