@@ -25,10 +25,15 @@ class Mix:
 		self.str_dict = d
 
 
-
+	# nlargest()
 	def max_values(self):
 		list_values = list(self.str_dict.values())
 		list_values.sort()
+
+
+		# list_values.sort(reverse = True)
+		# print(list_values[:3])
+
 
 		if len(list_values) < 3:
 			count = len(list_values)
