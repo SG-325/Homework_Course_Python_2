@@ -4,8 +4,6 @@ import requests
 
 
 def function(l):
-
-
 	for i in l:
 
 		p = i["name"]
@@ -13,11 +11,6 @@ def function(l):
 
 		with open(f"{p}.jpeg","wb") as f:
 			f.write(requests.get(i["url"]).content)
-
-
-	
-
-
 
 
 if __name__ == "__main__":
@@ -28,18 +21,21 @@ if __name__ == "__main__":
 	
 	thread_list = []
 	a = []
+	b = []
 	j = 0
-	
+
 	for i in range(5):
 		a.append(dict_["items"][j])
 		a.append(dict_["items"][j+1])
-	
-		x = threading.Thread(target=function, args = (a, ))
+		b.append(a)
+		j += 2
+
+	for i in b:	
+		x = threading.Thread(target=function, args = (i, ))
 		thread_list.append(x)
 		x.start()
 	
-		a.clear()
-		j += 2
+		
 
 
 	for thread in thread_list:
