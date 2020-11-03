@@ -20,38 +20,18 @@ if __name__ == "__main__":
 
 	
 	thread_list = []
-	a = []
 	b = []
 	j = 0
 
 	for i in range(5):
+		a = []
 		a.append(dict_["items"][j])
 		a.append(dict_["items"][j+1])
 		b.append(a)
 		j += 2
 
+
 	for i in b:	
 		x = threading.Thread(target=function, args = (i, ))
 		thread_list.append(x)
 		x.start()
-	
-		
-
-
-	for thread in thread_list:
-		thread.join()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
